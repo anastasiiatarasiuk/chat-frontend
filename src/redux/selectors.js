@@ -2,6 +2,8 @@ import { createSelector } from "@reduxjs/toolkit";
 
 export const selectChats = (state) => state.chats.items;
 
+export const selectCurrentChat = (state) => state.chats.currentChat;
+
 export const selectIsLoading = (state) => state.chats.isLoading;
 
 export const selectIsError = (state) => state.chats.isError;

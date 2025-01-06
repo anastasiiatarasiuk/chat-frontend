@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { fetchChatsThunk } from "./redux/operations";
 import "./App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
+import { Route, Routes } from "react-router-dom";
+import ChatMessages from "./components/ChatMessages/ChatMessages";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -16,7 +18,11 @@ const App = () => {
       <aside>
         <Sidebar />
       </aside>
-      <main></main>
+      <main>
+        <Routes>
+          <Route path="/chats/:chatId/messages" element={<ChatMessages />} />
+        </Routes>
+      </main>
     </div>
   );
 };

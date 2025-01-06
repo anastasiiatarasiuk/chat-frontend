@@ -8,6 +8,7 @@ import {
 import { deleteChatThunk, updateChatThunk } from "../../redux/operations";
 import UpdateChatForm from "../UpdateChatForm/UpdateChatForm";
 import s from "./ChatList.module.css";
+import { Link } from "react-router-dom";
 
 const ChatsList = () => {
   const dispatch = useDispatch();
@@ -53,9 +54,14 @@ const ChatsList = () => {
                   ) : (
                     <>
                       <div>
-                        <h3>
-                          {chat.firstName} {chat.lastName}
-                        </h3>
+                        <Link
+                          to={`/chats/${chat._id}/messages`}
+                          className={s.chatLink}
+                        >
+                          <h3>
+                            {chat.firstName} {chat.lastName}
+                          </h3>
+                        </Link>
                       </div>
                       <div className={s.buttonsContainer}>
                         <button

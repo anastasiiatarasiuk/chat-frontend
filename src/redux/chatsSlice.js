@@ -4,10 +4,14 @@ import {
   addChatThunk,
   deleteChatThunk,
   updateChatThunk,
+  fetchChatByIdThunk,
+  sendMessageThunk,
 } from "./operations.js";
 
 const initialState = {
   items: [],
+  currentChat: null,
+  messages: [],
   isLoading: false,
   isError: null,
 };
@@ -33,12 +37,24 @@ const chatsSlice = createSlice({
             : chat;
         });
       })
+      .addCase(fetchChatByIdThunk.fulfilled, (state, action) => {
+        state.currentChat = action.payload.data;
+      })
+      .addCase(sendMessageThunk.fulfilled, (state, action) => {
+        if (action.payload) {
+          state.messages.push({
+            text: action.payload,
+          });
+        }
+      })
       .addMatcher(
         isAnyOf(
           fetchChatsThunk.pending,
           addChatThunk.pending,
           deleteChatThunk.pending,
-          updateChatThunk.pending
+          updateChatThunk.pending,
+          fetchChatByIdThunk.pending,
+          sendMessageThunk.pending
         ),
         (state) => {
           state.isLoading = true;
@@ -50,7 +66,9 @@ const chatsSlice = createSlice({
           fetchChatsThunk.rejected,
           addChatThunk.rejected,
           deleteChatThunk.rejected,
-          updateChatThunk.rejected
+          updateChatThunk.rejected,
+          fetchChatByIdThunk.rejected,
+          sendMessageThunk.rejected
         ),
         (state) => {
           state.isLoading = false;
@@ -62,7 +80,9 @@ const chatsSlice = createSlice({
           fetchChatsThunk.fulfilled,
           addChatThunk.fulfilled,
           deleteChatThunk.fulfilled,
-          updateChatThunk.fulfilled
+          updateChatThunk.fulfilled,
+          fetchChatByIdThunk.fulfilled,
+          sendMessageThunk.fulfilled
         ),
         (state) => {
           state.isLoading = false;

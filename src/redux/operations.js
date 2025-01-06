@@ -48,3 +48,29 @@ export const updateChatThunk = createAsyncThunk(
     }
   }
 );
+
+export const fetchChatByIdThunk = createAsyncThunk(
+  "chats/fetchById",
+  async (chatId, thunkAPI) => {
+    try {
+      const { data } = await chatsApi.get(`chats/${chatId}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const sendMessageThunk = createAsyncThunk(
+  "chats/sendMessage",
+  async ({ chatId, messageText }, { rejectWithValue }) => {
+    try {
+      const response = await chatsApi.post(`/chats/${chatId}/messages`, {
+        text: messageText,
+      });
+      return response.data.data.messages.text;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
