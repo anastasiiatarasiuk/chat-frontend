@@ -18,21 +18,20 @@ const chatsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchChatsThunk.fulfilled, (state, action) => {
-        state.items = action.payload;
+        state.items = action.payload.data;
       })
       .addCase(addChatThunk.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        state.items.push(action.payload.data);
       })
       .addCase(deleteChatThunk.fulfilled, (state, action) => {
-        state.items = state.items.filter((chat) => chat.id !== action.payload);
+        state.items = state.items.filter((chat) => chat._id !== action.payload);
       })
       .addCase(updateChatThunk.fulfilled, (state, action) => {
-        const index = state.items.findIndex(
-          (chat) => chat.id === action.payload.id
-        );
-        if (index !== -1) {
-          state.items[index] = action.payload;
-        }
+        state.items = state.items.map((chat) => {
+          return chat._id === action.payload.data._id
+            ? action.payload.data
+            : chat;
+        });
       })
       .addMatcher(
         isAnyOf(

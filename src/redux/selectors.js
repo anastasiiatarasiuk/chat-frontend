@@ -8,12 +8,15 @@ export const selectIsError = (state) => state.chats.isError;
 
 export const selectFilter = (state) => state.filters.filter;
 
-export const selectFilteredContacts = createSelector(
+export const selectFilteredChats = createSelector(
   [selectChats, selectFilter],
 
   (chats, filter) => {
+    if (!filter.trim()) {
+      return chats;
+    }
     return chats.filter((chat) => {
-      const firstNameMatch = chat.name
+      const firstNameMatch = chat.firstName
         .toLowerCase()
         .includes(filter.toLowerCase());
       const lastNameMatch = chat.lastName

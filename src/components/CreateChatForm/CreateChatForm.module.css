@@ -1,0 +1,41 @@
+.form {
+  padding: 30px 40px;
+  width: 506px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid #242424;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.formTitle {
+  text-align: center;
+}
+
+.fieldTitle {
+  font-weight: 600;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.input {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.saveBtn {
+  border-radius: 5px;
+  padding: 12px 10px;
+  margin-top: 40px;
+  background: linear-gradient(90deg, #763af5 0%, #a604f2 100%);
+  border-style: none;
+  cursor: pointer;
+  font-size: 18px;
+}

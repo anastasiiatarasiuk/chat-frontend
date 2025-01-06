@@ -1,0 +1,47 @@
+.chatsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  padding-left: 10px;
+  margin-bottom: 30px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #5b42f3;
+  padding: 10px;
+  background-color: transparent;
+  height: 50px;
+}
+
+.listItem:first-child {
+  border-top: 2px solid #5b42f3;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.updateBtn {
+  padding: 12px 14px;
+  background-color: green;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.deleteBtn {
+  padding: 12px 14px;
+  background-color: red;
+  border-radius: 5px;
+  border-style: none;
+}
